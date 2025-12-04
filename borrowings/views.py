@@ -1,17 +1,24 @@
-from django.shortcuts import render
-from rest_framework import viewsets, status
+from rest_framework import viewsets
+from rest_framework import serializers
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-
-from books import serializers
+from django.utils.timezone import now
 from .models import Borrowing
 from .serializers import BorrowingSerializer
-from books.models import Book
-from django.utils.timezone import now
+
 
 
 class BorrowingViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for book borrowing.
+    - create: Creates a new loan (decreases the book's inventory by 1)
+    - list: Gets a list of loans
+    - retrieve: Gets loan details
+    - update/partial_update: Updates a loan
+    - destroy: Deletes a loan
+    """
+
     queryset = Borrowing.objects.all()
     serializer_class = BorrowingSerializer
     permission_classes = [IsAuthenticated]
@@ -26,6 +33,12 @@ class BorrowingViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["post"])
     def return_book(self, request, pk=None):
+        """
+        Book returned by user.
+        - Sets actual_return_date = today
+        - Increases book inventory by 1
+        - Returns a message about the result
+        """
         borrowing = self.get_object()
         if borrowing.actual_return_date:
             return Response({"detail": "Already returned."}, status=400)
