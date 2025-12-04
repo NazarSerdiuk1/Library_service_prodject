@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import generics, permissions
 from .serializers import RegisterSerializer, UserSerializer
 from django.contrib.auth import get_user_model
