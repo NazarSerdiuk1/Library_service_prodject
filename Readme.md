@@ -4,42 +4,6 @@ REST API for managing books, users, and loans.
 Supports user registration, profile retrieval and updating, book management (for administrators only), as well as a system for borrowing and returning books.
 The project includes Swagger documentation and tests.
 
-Project structure
-library_service_prodject/
-│
-├── books/
-    ├──tests
-        ├──test_books_api.py
-    ├──admin.py
-    ├──models.py
-    ├──serializers.py
-    ├──urls.py
-    ├──views.py
-├── borrowings/
-    ├──tests
-        ├──test_borrowings_api.py
-    ├──admin.py
-    ├──models.py
-    ├──serializers.py
-    ├──urls.py
-    ├──views.py
-│
-├── library_service_prodject/
-│   ├── settings.py
-│   ├── urls.py
-├── users/
-    ├──tests
-        ├──test_users_api.py
-    ├──admin.py
-    ├──models.py
-    ├──serializers.py
-    ├──urls.py
-    ├──views.py
-├──pytest.ini
-├── manage.py
-├── README.md
-├──requirements.txt
-
 Project description
 Functionality:
 -User registration
