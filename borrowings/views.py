@@ -4,9 +4,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.utils.timezone import now
+from notifications.services import notify_new_borrowing, notify_return
 from .models import Borrowing
 from .serializers import BorrowingSerializer
-
 
 
 class BorrowingViewSet(viewsets.ModelViewSet):
@@ -29,7 +29,10 @@ class BorrowingViewSet(viewsets.ModelViewSet):
             raise serializers.ValidationError("Book not available.")
         book.inventory -= 1
         book.save()
-        serializer.save(user=self.request.user)
+
+        borrowing = serializer.save(user=self.request.user)
+
+        notify_new_borrowing(borrowing)
 
     @action(detail=True, methods=["post"])
     def return_book(self, request, pk=None):
@@ -46,4 +49,7 @@ class BorrowingViewSet(viewsets.ModelViewSet):
         borrowing.book.inventory += 1
         borrowing.book.save()
         borrowing.save()
+
+        notify_return(borrowing)
+        
         return Response({"detail": "Book returned."})

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "books",
     "borrowings",
+    "payments"
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+
+TELEGRAM_TOKEN = env("TELEGRAM_TOKEN")
+TELEGRAM_CHAT_ID = env("TELEGRAM_CHAT_ID")
