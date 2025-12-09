@@ -9,7 +9,7 @@ from decimal import Decimal
 class PaymentService:
     @staticmethod
     def create_payment_session(borrowing, amount):
-        # Симуляция платежа без Stripe
+        
         payment = Payment.objects.create(
             borrowing=borrowing,
             money_to_pay=amount,

@@ -142,3 +142,4 @@ wsproto==1.2.0
 xlsxwriter==3.2.5
 zope.interface==7.2
 zstandard==0.25.0
+django-environ
