@@ -15,7 +15,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=["post"])
     def create_session(self, request):
         """
-        Создаём фиктивный платеж для borrowings.
+        Create a fictitious payment for borrowings.
         """
         borrowing_id = request.data.get("borrowing_id")
         borrowing = Borrowing.objects.get(id=borrowing_id)
@@ -29,7 +29,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=["post"])
     def success(self, request):
         """
-        Симуляция успешной оплаты.
+        Simulation of successful payment.
         """
         session_id = request.data.get("session_id")
         payment = Payment.objects.get(session_id=session_id)
@@ -42,6 +42,6 @@ class PaymentViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=["post"])
     def cancel(self, request):
         """
-        Симуляция отмены оплаты.
+        Simulation of payment cancellation.
         """
         return Response({"detail": "Payment cancelled"})
