@@ -1,20 +1,18 @@
 from django.db import models
 from borrowings.models import Borrowing
+from library_service_prodject.constants import PaymentStatus, PaymentType
 
 
 class Payment(models.Model):
-    STATUS_CHOICES = [
-        ("PENDING", "Pending"),
-        ("PAID", "Paid"),
-    ]
+    status = models.CharField(
+        max_length=10,
+        choices=[(s.value, s.value) for s in PaymentStatus],
+        default=PaymentStatus.PENDING.value,
+    )
 
-    TYPE_CHOICES = [
-        ("PAYMENT", "Payment"),
-        ("FINE", "Fine"),
-    ]
-
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="PENDING")
-    type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    type = models.CharField(
+        max_length=10, choices=[(t.value, t.value) for t in PaymentType]
+    )
     borrowing = models.ForeignKey(
         Borrowing, on_delete=models.CASCADE, related_name="payments"
     )
