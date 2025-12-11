@@ -1,4 +1,4 @@
-Library API
+#Library API
 
 REST API for managing books, users, and loans.
 Supports user registration, profile retrieval and updating, book management (for administrators only), as well as a system for borrowing and returning books.
