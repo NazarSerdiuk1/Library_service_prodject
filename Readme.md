@@ -76,24 +76,28 @@ The project includes Swagger documentation and tests.
     docker-compose exec web python manage.py createsuperuser
     ```
 ## API endpoints
-Users
+## Users
 Registration: POST /api/users/register/
-Obtaining/updating a profile:
+## Obtaining/updating a profile:
 GET /api/users/<id>/
 PUT /api/users/<id>/
 
-Books
-List of books: GET /api/books/
-Creating a book (admin): POST /api/books/
-Details:GET /api/books/<id>/
-Borrowings
+## Books
+List of books: 
+GET /api/books/
+ Creating a book (admin):
+POST /api/books/
+Details:
+GET /api/books/<id>/
+## Borrowings
 Create a borrowing: POST /api/borrowings/
 Return the book: POST /api/borrowings/<id>/return_book/
 
 ## Swagger documentation
-Swagger UI: http://127.0.0.1:8000/api/schema/swagger/
+## Swagger UI:
+http://127.0.0.1:8000/api/schema/swagger/
 
-Settings in settings.py
+## Settings in settings.py:
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
