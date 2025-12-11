@@ -102,12 +102,7 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
-SPECTACULAR_SETTINGS = {
-    "TITLE": "Library API",
-    "DESCRIPTION": "API для управления книгами и заимствованиями.",
-    "VERSION": "1.0.0",
-}
-Connection in urls.py:
+## Connection in urls.py:
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
