@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils.timezone import now
 from borrowings.models import Borrowing
 
-# Создаём логгер для этого модуля
+# Creating a logger for this module
 logger = logging.getLogger(__name__)
 
 
@@ -19,7 +19,7 @@ def send_telegram_message(text: str):
 
     try:
         response = requests.post(url, data=payload)
-        response.raise_for_status()  # вызовет исключение при ошибке HTTP
+        response.raise_for_status()  # will throw an exception on an HTTP error
     except requests.RequestException as e:
         logger.error("Telegram error: %s", e)
 
